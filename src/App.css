@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 48px);
+  grid-gap: 5px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 48px;
+  height: 48px;
+  background-color: white;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cell.active {
+  background-color: black;
+}
+
+.rotate-button {
+  padding: 8px 16px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.rotate-button:hover {
+  background-color: #0056b3;
+}
+
+
