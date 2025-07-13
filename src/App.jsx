@@ -17,17 +17,10 @@ export default function App() {
   };
 
   const rotateShape = () => {
-    const newShape = Array(size)
-      .fill(null)
-      .map(() => Array(size).fill(false));
-
-    for (let i = 0; i < size; i++) {
-      for (let j = 0; j < size; j++) {
-        newShape[j][size - 1 - i] = shape[i][j];
-      }
-    }
-
-    setShape(newShape);
+    const rotated = shape[0].map((_, colIndex) =>
+      shape.map((row) => row[colIndex]).reverse()
+    );
+    setShape(rotated);
   };
 
   return (
