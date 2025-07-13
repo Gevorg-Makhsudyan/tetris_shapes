@@ -9,12 +9,15 @@ export default function App() {
 
   const [shape, setShape] = useState(emptyShape);
 
-  const toggleCell = (row, col) => {
-    const newShape = shape.map((r, i) =>
-      r.map((cell, j) => (i === row && j === col ? !cell : cell))
-    );
-    setShape(newShape);
-  };
+const toggleCell = (row, col) => {
+  const newShape = shape.map((rowArray, rowIndex) => {
+    if (rowIndex !== row) return rowArray;
+
+    return rowArray.map((cell, colIndex) => (colIndex === col ? !cell : cell));
+  });
+
+  setShape(newShape);
+};
 
   const rotateShape = () => {
     const rotated = shape[0].map((_, colIndex) =>
