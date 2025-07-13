@@ -9,19 +9,21 @@ export default function App() {
 
   const [shape, setShape] = useState(emptyShape);
 
-const toggleCell = (row, col) => {
-  const newShape = shape.map((rowArray, rowIndex) => {
-    if (rowIndex !== row) return rowArray;
+  const toggleCell = (targetRow, targetCol) => {
+    const newShape = shape.map((rowArray, rowIndex) => {
+      if (rowIndex !== targetRow) return rowArray;
 
-    return rowArray.map((cell, colIndex) => (colIndex === col ? !cell : cell));
-  });
+      return rowArray.map((cell, colIndex) =>
+        colIndex === targetCol ? !cell : cell
+      );
+    });
 
-  setShape(newShape);
-};
+    setShape(newShape);
+  };
 
   const rotateShape = () => {
     const rotated = shape[0].map((_, colIndex) =>
-      shape.map((row) => row[colIndex]).reverse()
+      shape.map((rowArray) => rowArray[colIndex]).reverse()
     );
     setShape(rotated);
   };
@@ -29,17 +31,20 @@ const toggleCell = (row, col) => {
   return (
     <div className="container">
       <div className="grid">
-        {shape.map((row, i) =>
-          row.map((cell, j) => (
+        {shape.map((rowArray, rowIndex) =>
+          rowArray.map((cell, colIndex) => (
             <div
-              key={`${i}-${j}`}
-              onClick={() => toggleCell(i, j)}
+              key={`${rowIndex}-${colIndex}`}
+              onClick={() => toggleCell(rowIndex, colIndex)}
               className={`cell ${cell ? "active" : ""}`}
             />
           ))
         )}
       </div>
-      <button className="rotate-button" onClick={rotateShape}>Rotate</button>
+      <button className="rotate-button" onClick={rotateShape}>
+        Rotate
+      </button>
     </div>
   );
 }
+
